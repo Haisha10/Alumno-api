@@ -1,6 +1,8 @@
 package com.upc.Alumnoapi.controller;
 
-import com.upc.Alumnoapi.model.Alumno;
+import com.upc.Alumnoapi.model.dto.AlumnoDTO;
+import com.upc.Alumnoapi.model.dto.AlumnoEscuelaDTO;
+import com.upc.Alumnoapi.model.entity.Alumno;
 import com.upc.Alumnoapi.service.AlumnoService;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,13 +37,18 @@ public class AlumnoController {
         return new ResponseEntity<Alumno>(alumnoService.getAlumno(alumnoId), HttpStatus.OK);
     }
 
+    @GetMapping("/alumnos/dto")
+    public ResponseEntity<List<AlumnoEscuelaDTO>> getAllAlumnosEscuela() {
+        return new ResponseEntity<List<AlumnoEscuelaDTO>>(alumnoService.getAllAlumnosEscuela(), HttpStatus.OK);
+    }
+
     @PostMapping("/alumnos")
-    public ResponseEntity<Alumno> createAlumno(Alumno alumno) {
+    public ResponseEntity<Alumno> createAlumno(@RequestBody AlumnoDTO alumno) {
         return new ResponseEntity<Alumno>(alumnoService.insertAlumno(alumno), HttpStatus.CREATED);
     }
 
     @PutMapping("/alumnos/{id}")
-    public ResponseEntity<Alumno> updateAlumno(@PathVariable(value = "id") Long alumnoId, @RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> updateAlumno(@PathVariable(value = "id") Long alumnoId, @RequestBody AlumnoDTO alumno) {
         return new ResponseEntity<Alumno>(alumnoService.updateAlumno(alumnoId, alumno), HttpStatus.OK);
     }
 

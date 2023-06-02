@@ -1,19 +1,17 @@
-package com.upc.Alumnoapi.model;
+package com.upc.Alumnoapi.model.dto;
 
-import jakarta.persistence.*;
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "students")
-public class Alumno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AlumnoDTO implements Serializable {
     private Long Id;
     private String firstname;
     private String lastname;
+    private Long schoolId;
 }
